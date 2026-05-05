@@ -1,0 +1,127 @@
+body {
+    font-family: Arial;
+    background: linear-gradient(135deg, #eef2f7, #dbe4f0);
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input,
+select {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+}
+
+button {
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+th {
+    background: #007bff;
+    color: white;
+}
+
+#resultado {
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+table {
+    background: white;
+}
+
+.logout {
+    background: red;
+    float: right;
+    margin-bottom: 10px;
+}
+
+.tarjeta {
+    padding: 40px;
+    border-radius: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* ENTRADA */
+.entrada {
+    background: #abd9c0;
+    border-left: 6px solid #198754;
+    color: #146c43;
+}
+
+/* SALIDA */
+.salida {
+    background: #e7f0ff;
+    border-left: 6px solid #0d6efd;
+    color: #0a58ca;
+}
+
+/* HOVER */
+.tarjeta:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.logo {
+    height: 100px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+}
+
+.logo {
+    height: 150px;
+    transform: scale(1.3);
+}
+
+.logo-login {
+    height: 150px;   
+    margin-bottom: 5px;
+}
+.btn-active {
+    background-color: #0d6efd !important;
+    color: white !important;
+    border-color: #0d6efd !important;
+}
