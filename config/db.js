@@ -1,30 +1,15 @@
-const sqlite3 = require('sqlite3').verbose();
+const { Pool } = require('pg');
+require('dotenv').config();
 
-const db = new sqlite3.Database('./database.db');
-
-db.serialize(() => {
-
-    db.run(`
-        CREATE TABLE IF NOT EXISTS usuarios (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nombre TEXT UNIQUE,
-            password TEXT,
-            rol TEXT,
-            descanso INTEGER
-        )
-    `);
-
-    db.run(`
-        CREATE TABLE IF NOT EXISTS fichajes (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            usuario TEXT,
-            fecha TEXT,
-            entrada TEXT,
-            salida TEXT,
-            horas REAL
-        )
-    `);
-
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 
-module.exports = db;
+pool.connect()
+    .then(() => console.log('PostgreSQL conectado'))
+    .catch(err => console.log(err));
+
+module.exports = pool;
