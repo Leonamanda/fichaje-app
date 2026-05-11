@@ -5,9 +5,9 @@ const service = new UsuarioService(db);
 
 exports.crearUsuario = async (req, res) => {
     try {
-        let { nombre, password, rol, descanso } = req.body;
+        let { usuario, password, rol, descanso } = req.body;
 
-        if (!nombre || nombre.trim() === "") {
+        if (!usuario || usuario.trim() === "") {
             return res.status(400).send("El nombre es obligatorio");
         }
 
@@ -29,7 +29,7 @@ exports.crearUsuario = async (req, res) => {
             descanso = 0;
         }
 
-        await service.crearUsuario(nombre, password, rol, descanso);
+        await service.crearUsuario(usuario, password, rol, descanso);
 
         res.send("Usuario creado");
 
@@ -40,9 +40,9 @@ exports.crearUsuario = async (req, res) => {
 
 exports.login = async (req, res) => {
     try {
-        const { nombre, password } = req.body;
+        const { usuario, password } = req.body;
 
-        const user = await service.login(nombre, password);
+        const user = await service.login(usuario, password);
 
         res.json(user);
 
