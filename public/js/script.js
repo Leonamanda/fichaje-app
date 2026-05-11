@@ -1,40 +1,97 @@
-// 🔐 LOGIN
+//  LOGIN
 async function login() {
-  const usuario = document.getElementById("usuario").value;
 
-  const password = document.getElementById("password").value;
+    const usuario =
+        document.getElementById(
+            'usuario'
+        ).value;
 
-  const res = await fetch("/api/usuarios/login", {
-    method: "POST",
+    const password =
+        document.getElementById(
+            'password'
+        ).value;
 
-    headers: {
-      "Content-Type": "application/json",
-    },
+    try {
 
-    body: JSON.stringify({
-      usuario,
-      password,
-    }),
-  });
+        const res = await fetch(
+            '/api/usuarios/login',
+            {
+                method: 'POST',
 
-  const data = await res.json();
+                headers: {
+                    'Content-Type':
+                        'application/json'
+                },
 
-  console.log(data);
+                body: JSON.stringify({
+                    usuario,
+                    password
+                })
+            }
+        );
 
-  if (data.ok) {
-    localStorage.setItem("usuario", data.usuario);
+        const texto =
+            await res.text();
 
-    localStorage.setItem("rol", data.rol);
+        console.log(texto);
 
-    if (data.rol === "admin") {
-      window.location = "/admin.html";
-    } else {
-      window.location = "/trabajador.html";
+        let data;
+
+        try {
+
+            data =
+                JSON.parse(texto);
+
+        } catch {
+
+            alert(
+                'Error servidor'
+            );
+
+            return;
+        }
+
+        if (data.ok) {
+
+            localStorage.setItem(
+                'usuario',
+                data.usuario
+            );
+
+            localStorage.setItem(
+                'rol',
+                data.rol
+            );
+
+            if (data.rol === 'admin') {
+
+                window.location =
+                    '/admin.html';
+
+            } else {
+
+                window.location =
+                    '/trabajador.html';
+            }
+
+        } else {
+
+            alert(
+                data.error ||
+                'Login incorrecto'
+            );
+        }
+
+    } catch (err) {
+
+        console.log(err);
+
+        alert(
+            'Error conexión servidor'
+        );
     }
-  } else {
-    alert(data.error);
-  }
 }
+
 // 👤 CREAR USUARIO
 async function crearUsuario() {
   const usuario = document.getElementById("nombre").value;
